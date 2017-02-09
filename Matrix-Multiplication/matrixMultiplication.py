@@ -3,7 +3,6 @@ import math
 import timeit
 import matplotlib.pyplot as plt
 
-#QUESTION 1:
 #Brute force algorithm to multiply two matrices
 def matmult(my_arr, my_vec):
 	arr_len = len(my_arr) #Set array length
@@ -20,7 +19,6 @@ def matmult(my_arr, my_vec):
 
 	return fin_array
 #--------------------------------------------------------------------
-#QUESTION 2
 #Generate Hadamard matrix of size 2^k x 2^k
 def hadmat(k):
 
@@ -34,7 +32,6 @@ def hadmat(k):
 
 	return new
 #--------------------------------------------------------------------
-#QUESTION4
 #Multiply a Hadamard matrix of size 2^k x 2^k and an vector of size 2^k
 def hadmatmult(had_arr, my_vec):
 	n = len(had_arr)			#Set array length
@@ -57,42 +54,42 @@ def hadmatmult(had_arr, my_vec):
 	return new
 #--------------------------------------------------------------------
 #gets the time to compute hadamard matrix multiplication
-# def hadmatmulttime():
-# 	hadmattime = []
-# 	for i in range(1,13):
-# 		my_vec = np.random.permutation(2**i)
-# 		had_arr = hadmat(i)
-# 		t = timeit.Timer(lambda: hadmatmult(had_arr, my_vec))
-# 		hadmattime = np.append(hadmattime, t.timeit(number=1))
-# 	print(hadmattime)
-# 	return hadmattime
+def hadmatmulttime():
+	hadmattime = []
+	for i in range(1,13):
+		my_vec = np.random.permutation(2**i)
+		had_arr = hadmat(i)
+		t = timeit.Timer(lambda: hadmatmult(had_arr, my_vec))
+		hadmattime = np.append(hadmattime, t.timeit(number=1))
+	print(hadmattime)
+	return hadmattime
 #--------------------------------------------------------------------
 #gets the time to compute brute force matrix multiplication
-# def matmulttime():
-# 	print("Getting matmult times...")
-# 	matmulttime = []
-# 	for i in range(1,13):
-# 		my_vec = np.random.permutation(2**i)
-# 		had_arr = hadmat(i)
-# 		t = timeit.Timer(lambda: matmult(had_arr, my_vec))
-# 		matmulttime = np.append(matmulttime, t.timeit(number=1))
-# 	print(matmulttime)
-# 	return matmulttime
+def matmulttime():
+	print("Getting matmult times...")
+	matmulttime = []
+	for i in range(1,13):
+		my_vec = np.random.permutation(2**i)
+		had_arr = hadmat(i)
+		t = timeit.Timer(lambda: matmult(had_arr, my_vec))
+		matmulttime = np.append(matmulttime, t.timeit(number=1))
+	print(matmulttime)
+	return matmulttime
 #--------------------------------------------------------------------
 #graphs the hadamard matrix multiplication vs the brute force multiplication
-# def plottimes():
-# 	print("Plotting times")
+def plottimes():
+	print("Plotting times")
 
-# 	had_mat_mult = hadmatmulttime() #gets the hadamard matrix multiplication times
-# 	mat_mult = matmulttime() #gets the matrix multiplication times
+	had_mat_mult = hadmatmulttime() #gets the hadamard matrix multiplication times
+	mat_mult = matmulttime() #gets the matrix multiplication times
 
-# 	x_coor = [2**x for x in range(1,13)]
-# 	plt.plot(x_coor, had_mat_mult, label="Hadmatmult")
-# 	plt.plot(x_coor, mat_mult, label="Matmult")
-# 	plt.legend()
-# 	plt.axis([0,4096,0,12])
-# 	plt.ylabel("Running Time (s)")
-# 	plt.xlabel("Array size 'n'")
-# 	plt.title("Matrix Multiplication vs. Hadamard Matrix Multiplication")
-# 	plt.show()
+	x_coor = [2**x for x in range(1,13)]
+	plt.plot(x_coor, had_mat_mult, label="Hadmatmult")
+	plt.plot(x_coor, mat_mult, label="Matmult")
+	plt.legend()
+	plt.axis([0,4096,0,12])
+	plt.ylabel("Running Time (s)")
+	plt.xlabel("Array size 'n'")
+	plt.title("Matrix Multiplication vs. Hadamard Matrix Multiplication")
+	plt.show()
 
